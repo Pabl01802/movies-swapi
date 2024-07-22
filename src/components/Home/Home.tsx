@@ -1,7 +1,8 @@
 import { useState, useEffect } from 'react'
 import axios from 'axios'
 
-import { Movie } from '../Movie/Movie'
+import { MovieListItem } from '../MovieListItem/MovieListItem'
+import { Loading } from '../Loading/Loading'
 
 import { IMovie } from '../../interfaces'
 
@@ -9,7 +10,10 @@ import './Home.css'
 
 export const Home = () => {
 
-  const [movies, setMovies] = useState<IMovie[] | null>([
+  const [error, setError] = useState<string>('')
+  const [loading, setLoading] = useState<boolean>(false)
+  const [movies, setMovies] = useState<IMovie[] | null>(
+    [
     {
         "title": "A New Hope",
         "episode_id": 4,
@@ -394,32 +398,36 @@ export const Home = () => {
         "created": "2014-12-20T10:57:57.886000Z",
         "edited": "2014-12-20T20:18:48.516000Z",
         "url": "https://swapi.dev/api/films/5/"
-    }])
+    }]
+  )
  
-  // useEffect(() => {
-  //   const getData = async () => {
-  //     try{
-  //       const res = await axios.get('https://swapi.dev/api/films/')
-  //       setMovies(res.data.results)
-  //       console.log(res.data.results)
-  //     }catch(err){
-  //       console.log(err)
-  //     }
-  //   }
+  useEffect(() => {
+    // const getData = async () => {
+    //   try{
+    //     const res = await axios.get('https://swapi.dev/api/films/')
+    //     setMovies(res.data.results)
+    //     setLoading(false)
+    //   }catch(err){
+    //     setError('Cannot load movies')
+    //   }
+    // }
 
-  //   getData()
-  // }, [])
+    // getData()
+  }, [])
 
-  const allMovies = movies?.map((movie:IMovie) => (
-    <Movie data={movie} key={`movie-${movie.episode_id}`} />
+  const allMovies = movies?.map((movie:IMovie, index) => (
+    <MovieListItem data={movie} id={index} key={`movie-${movie.episode_id}`} />
   ))
 
   return (
-    <main>
+    <main className='home-page'>
       <h1>Movies from swapi.dev</h1>
+      <div>
+        Filters
+      </div>
       <ul>
         {
-          allMovies
+          error ? error : loading ? <Loading /> : allMovies
         }
       </ul>
     </main>
