@@ -9,22 +9,20 @@ export const Characters = ({ characters }:ICharacterProps) => {
   const [chars, setChars] = useState<ICharacter[] | null>(null)
   const [error, setError] = useState<string>('')
 
-  const getCharacter = async (url:string) => {
-    try{
-      const res = await axios.get(url)
-      console.log(res.data)
-    }catch(err){
-      console.log(err)
-    }
-  }
-
   useEffect(() => {
     const getCharacters = async () => {
       try{
         const res = await Promise.all([...characters.map(char => axios.get(char))])
-        console.log(res.length)
-        if(res.length === characters.length) setLoading(false)
+        if(res.length === characters.length){
+          setLoading(false)
+          setChars(res.map((char) => char.data))
+        } 
+        else {
+          setLoading(false)
+          setError('Cannot load characters')
+        }
       }catch(err){
+        setLoading(false)
         setError('Cannot load characters')
         console.log(err)
       }
