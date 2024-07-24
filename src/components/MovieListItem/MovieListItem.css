@@ -1,6 +1,9 @@
 .movie-list {
   list-style: none;
 }
+.movie-list div {
+  padding-left: 15px;
+}
 
 .link-button {
   padding: 5px 15px;
@@ -21,6 +24,7 @@
   display: -webkit-box;
   text-overflow: ellipsis;
   -webkit-box-orient: vertical;
+  line-clamp: 1;
   -webkit-line-clamp: 1;
   overflow: hidden;
 }/*# sourceMappingURL=MovieListItem.css.map */
