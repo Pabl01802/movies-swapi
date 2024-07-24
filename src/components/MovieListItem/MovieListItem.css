@@ -6,13 +6,21 @@
   padding: 5px 15px;
   text-decoration: none;
   color: #fff;
-  background: rgb(144, 54, 255);
+  background: var(--purple);
   font-size: 14px;
   display: block;
   width: 120px;
   text-align: center;
-  transition: 0.2s;
+  transition: var(--transition);
 }
 .link-button:hover {
-  transform: translateY(-2px);
+  transform: var(--translateY);
+}
+
+.movie-description {
+  display: -webkit-box;
+  text-overflow: ellipsis;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 1;
+  overflow: hidden;
 }/*# sourceMappingURL=MovieListItem.css.map */

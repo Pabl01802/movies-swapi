@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react'
+import { useState, useEffect } from 'react'
 import axios from 'axios'
 import { ICharacterProps, ICharacter } from '../../interfaces'
 import { Loading } from '../Loading/Loading'
@@ -24,7 +24,6 @@ export const Characters = ({ characters }:ICharacterProps) => {
       }catch(err){
         setLoading(false)
         setError('Cannot load characters')
-        console.log(err)
       }
     }
     getCharacters()

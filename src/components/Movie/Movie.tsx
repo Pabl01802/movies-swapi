@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react'
+import { useState, useEffect } from 'react'
 import { useParams } from 'react-router-dom'
 import axios from 'axios'
 import { Loading } from '../Loading/Loading'
@@ -19,11 +19,9 @@ export const Movie = () => {
     const getMovie = async () => {
       try{
         const res = await axios.get(`https://swapi.dev/api/films/${params?.id}`)
-        console.log(res)
         setMovie(res.data)
         setLoading(false)
       }catch(err){
-        console.log(err)
         setError('Cannot load movie info')
         setLoading(false)
       }

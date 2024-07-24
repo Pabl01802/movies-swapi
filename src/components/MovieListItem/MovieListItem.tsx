@@ -1,4 +1,3 @@
-import React from 'react'
 import { IMovieProps } from '../../interfaces'
 import { Link } from 'react-router-dom'
 
@@ -9,6 +8,7 @@ export const MovieListItem = ({ data, id }:IMovieProps) => {
   return (
     <li className='movie-list'>
       <h3>{data.title}</h3>
+      <p className='movie-description'>{data.opening_crawl}</p>
       <Link className='link-button' to={(id+1).toString()}>Read more</Link>
     </li>
   )
