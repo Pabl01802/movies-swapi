@@ -36,9 +36,6 @@ export const Home = () => {
   return (
     <main className='home-page'>
       <h1>Movies from swapi.dev</h1>
-      <div>
-        Filters
-      </div>
       <ul>
         {
           error ? error : loading ? <Loading /> : allMovies
